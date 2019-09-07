@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+
+#print("Content-type: text/html")
+#print()
+#print("<h1>Hello world!</h1>")
+
+#from flup.server.fcgi import WSGIServer
+def app(environ, start_response):
+  start_response('200 OK', [('Content-Type', 'text/html')])
+  return('''Hello world!\n''')
+
+if __name__ == '__main__':
+  from flup.server.fcgi import WSGIServer
+  WSGIServer(app).run()
