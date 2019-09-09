@@ -7,10 +7,10 @@ Please implement deployment of 3 tier application, which would run on Ubuntu ser
 5. Make sure all your changes are persistent after reboot.
 
 # Evaluation points
-• correctness of implementation in scripts
-• Bash scripts best practices
-• Python code best practices
-• use of git, appropriate commit messages
-• documentation: README and inline code comments
+* correctness of implementation in scripts
+* Bash scripts best practices
+* Python code best practices
+* use of git, appropriate commit messages
+* documentation: README and inline code comments
 # Bonus points
-• Use Ansible for server setup.
+* Use Ansible for server setup.
