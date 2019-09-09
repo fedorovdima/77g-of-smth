@@ -18,29 +18,33 @@ Please implement deployment of 3 tier application, which would run on Ubuntu ser
 # Notes on manual task implementation
 * configure networking:
 The IP configuration is stored in `/etc/netplan/50-cloud-init.yaml`.
+* apply network configuration:
 ```
 $ sudo netplan --debug try
 $ sudo netplan --debug apply
 ```
-* install nginx:
+* install nginx and configure:
 ```
 $ sudo apt-get update
 $ sudo apt-get install -y nginx
 $ sudo systemctl enable nginx.service
 $ sudo systemctl start nginx.service
 $ sudo nano /etc/nginx/sites-available/default
+```
+* deploy hello-world app and its dependencies:
+```
 $ sudo nano /var/www/html/hello.py
 $ sudo apt install -y python3-pip
 # pip3 install flup
 $ sudo chmod +x /var/www/html/hello.py
-$ sudo nano /etc/supervisor/conf.d/hello-fcgi.conf
-$ sudo systemctl reload nginx.service
 ```
-* install supervisor to manage FastCGI socket:
+* install supervisor to manage FastCGI socket: 
 ```
 $ sudo apt install -y supervisor
 $ sudo systemctl enable supervisor.service
 $ sudo systemctl start supervisor.service
+$ sudo nano /etc/supervisor/conf.d/hello-fcgi.conf
+$ sudo systemctl reload supervisor.service
 ```
 * install PostgreSQL:
 ```
@@ -53,6 +57,8 @@ $ sudo -u postgres psql
 postgres=# CREATE DATABASE noctaskdb;
 postgres=# CREATE USER noc WITH ENCRYPTED PASSWORD 'kQTVFqpFuqo';
 postgres=# GRANT ALL PRIVILEGES ON DATABASE noctaskdb TO noc;
-
+```
+* test access to Postgres DB under the new user
+```
 $ psql -h 127.0.0.1 -p 5432 -U noc -W noctaskdb
 ```
