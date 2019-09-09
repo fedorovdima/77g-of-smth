@@ -22,6 +22,13 @@ $ sudo apt-get update
 $ sudo apt-get install -y nginx
 $ sudo systemctl enable nginx.service
 $ sudo systemctl start nginx.service
+$ sudo nano /etc/nginx/sites-available/default
+$ sudo nano /var/www/html/hello.py
+$ sudo apt install -y python3-pip
+# pip3 install flup
+$ sudo chmod +x /var/www/html/hello.py
+$ sudo nano /etc/supervisor/conf.d/hello-fcgi.conf
+$ sudo systemctl reload nginx.service
 ```
 * install supervisor to manage FastCGI socket:
 ```
