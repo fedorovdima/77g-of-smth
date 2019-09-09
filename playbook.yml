@@ -57,3 +57,14 @@
     apt:
       name: postgresql
       state: present
+  - name: create a sample Postgres DB
+    postgresql_db:
+      name: noctaskdb
+  - name: сreate a sample Postgres user
+    become: yes
+    become_user: postgres
+    postgresql_user:
+      db: noctestdb
+      name: noc
+      password: kQTVFqpFuqo
+      priv: ALL
