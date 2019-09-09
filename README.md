@@ -16,6 +16,13 @@ Please implement deployment of 3 tier application, which would run on Ubuntu ser
 * Use Ansible for server setup.
 
 # Implementation
+* configure networking:
+The IP configuration is stored in `/etc/netplan/50-cloud-init.yaml`.
+* apply network configuration:
+```
+$ sudo netplan --debug try
+$ sudo netplan --debug apply
+```
 ## Automated deployment
 <details>
   <summary>Automated task implementation is performed by means of using Ansible</summary>
@@ -79,13 +86,6 @@ PLAY RECAP *********************************************************************
 </details>
 
 ## Manual task implementation steps
-* configure networking:
-The IP configuration is stored in `/etc/netplan/50-cloud-init.yaml`.
-* apply network configuration:
-```
-$ sudo netplan --debug try
-$ sudo netplan --debug apply
-```
 * install nginx and configure:
 ```
 $ sudo apt-get update
