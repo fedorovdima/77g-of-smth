@@ -8,16 +8,47 @@
     apt:
       name: nginx
       state: present
+  - name: enable and start nginx
+    systemd:
+      name: nginx
+      enabled: yes
+      state: started
+  - name: upload nginx config
+    copy:
+      src: ubuntu-fs/etc/nginx/sites-available/default
+      dst: /etc/nginx/sites-available/default
+      user: root
+      group: root
+      mode: '0644'
   - name: install python3-pip
     apt:
       name: python3-pip
       state: present
   - name: install Python flup module for hello-world app
     command: pip3 install flup
+  - name: upload hello-world app code
+    copy:
+      src: ubuntu-fs/var/www/html/hello.py
+      dst: /var/www/html/hello.py
+      user: root
+      group: root
+      mode: '0644'
   - name: install supervisor
     apt:
       name: supervisor
       state: present
+  - name: enable and start supervisor
+    systemd:
+      name: supervisor
+      enabled: yes
+      state: started
+  - name: upload supervisor config file for managing FastCGI socket
+    copy:
+      src: ubuntu-fs/etc/supervisor/conf.d/hello-fcgi.conf
+      dst: /etc/supervisor/conf.d/hello-fcgi.conf
+      user: root
+      group: root
+      mode: '0644'
   - name: install Postgres SQL RDBMS
     apt:
       name: postgresql
