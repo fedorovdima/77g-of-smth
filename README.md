@@ -20,6 +20,11 @@ Please implement deployment of 3 tier application, which would run on Ubuntu ser
 <details>
   <summary>Automated task implementation is performed by means of using Ansible</summary>
 as shown below:
+  
+  ```test
+  command
+  ```
+
 ```$ ansible-playbook -v playbook.yml
 Using /home/ubuntu/.ansible.cfg as config file
 PLAY [target_group] ********************************************************************************
