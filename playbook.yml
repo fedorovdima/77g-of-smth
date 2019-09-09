@@ -1,0 +1,24 @@
+- hosts: nginx-servers
+  become: true
+  gather_facts: no
+  tasks: 
+  - name: make sure APT DB is up-to-date
+    command: apt-get update
+  - name: install nginx
+    apt:
+      name: nginx
+      state: present
+  - name: install python3-pip
+    apt:
+      name: python3-pip
+      state: present
+  - name: install Python flup module for hello-world app
+    command: pip3 install flup
+  - name: install supervisor
+    apt:
+      name: supervisor
+      state: present
+  - name: install Postgres SQL RDBMS
+    apt:
+      name: postgresql
+      state: present
