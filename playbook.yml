@@ -20,12 +20,6 @@
       user: root
       group: root
       mode: '0644'
-  - name: install python3-pip
-    apt:
-      name: python3-pip
-      state: present
-  - name: install Python flup module for hello-world app
-    command: pip3 install flup
   - name: upload hello-world app code
     copy:
       src: ubuntu-fs/var/www/html/hello.py
@@ -33,7 +27,13 @@
       user: root
       group: root
       mode: '0755'
-  - name: install supervisor
+  - name: install python3-pip to install required Python module(s)
+    apt:
+      name: python3-pip
+      state: present
+  - name: install Python flup module for hello-world app
+    command: pip3 install flup
+  - name: install supervisor to manage FastCGI socket between nginx and hello-world app
     apt:
       name: supervisor
       state: present
@@ -49,6 +49,10 @@
       user: root
       group: root
       mode: '0644'
+  - name: reload supervisor for it to handle the new config
+    systemd:
+      name: supervisor
+      state: reloaded
   - name: install Postgres SQL RDBMS
     apt:
       name: postgresql
