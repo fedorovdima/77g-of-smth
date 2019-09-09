@@ -1,9 +1,10 @@
-- hosts: nginx-servers
+- hosts: target_group
   become: true
   gather_facts: no
   tasks: 
   - name: make sure APT DB is up-to-date
-    command: apt-get update
+    apt:
+      update_cache: yes
   - name: install nginx
     apt:
       name: nginx
