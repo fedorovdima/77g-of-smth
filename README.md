@@ -74,6 +74,7 @@ changed: [1.2.3.4] => {"changed": true, "queries": ["GRANT ALL ON database \"noc
 
 PLAY RECAP *************************************************************************************************************
 1.2.3.4              : ok=16   changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
 
 </details>
 ## Manual task implementation steps
