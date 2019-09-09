@@ -71,4 +71,10 @@
       db: noctaskdb
       name: noc
       password: kQTVFqpFuqo
-      priv: ALL
+  - name: GRANT ALL PRIVILEGES ON DATABASE noctaskdb TO noc
+    become_user: postgres
+    postgresql_privs:
+      db: noctaskdb
+      privs: ALL
+      type: database
+      role: noc
