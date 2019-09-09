@@ -16,15 +16,15 @@
   - name: upload nginx config
     copy:
       src: ubuntu-fs/etc/nginx/sites-available/default
-      dst: /etc/nginx/sites-available/default
-      user: root
+      dest: /etc/nginx/sites-available/default
+      owner: root
       group: root
       mode: '0644'
   - name: upload hello-world app code
     copy:
       src: ubuntu-fs/var/www/html/hello.py
-      dst: /var/www/html/hello.py
-      user: root
+      dest: /var/www/html/hello.py
+      owner: root
       group: root
       mode: '0755'
   - name: install python3-pip to install required Python module(s)
@@ -45,8 +45,8 @@
   - name: upload supervisor config file for managing FastCGI socket
     copy:
       src: ubuntu-fs/etc/supervisor/conf.d/hello-fcgi.conf
-      dst: /etc/supervisor/conf.d/hello-fcgi.conf
-      user: root
+      dest: /etc/supervisor/conf.d/hello-fcgi.conf
+      owner: root
       group: root
       mode: '0644'
   - name: reload supervisor for it to handle the new config
@@ -57,14 +57,18 @@
     apt:
       name: postgresql
       state: present
+  - name: install postgres_* modules dependency
+    apt:
+      name: python-psycopg2
+      state: present
   - name: create a sample Postgres DB
+    become_user: postgres
     postgresql_db:
       name: noctaskdb
   - name: сreate a sample Postgres user
-    become: yes
     become_user: postgres
     postgresql_user:
-      db: noctestdb
+      db: noctaskdb
       name: noc
       password: kQTVFqpFuqo
       priv: ALL
