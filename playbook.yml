@@ -60,7 +60,7 @@
       state: present
   - name: install postgres_* modules dependency
     apt:
-      name: python-psycopg2
+      name: python3-psycopg2
       state: present
   - name: create a sample Postgres DB
     become_user: postgres
