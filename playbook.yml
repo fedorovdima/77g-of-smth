@@ -52,7 +52,7 @@
       mode: '0644'
   - name: reload supervisor & nginx for them to handle the new configs
     systemd:
-      name: "{{ name }}"
+      name: "{{ item }}"
       state: reloaded
     loop:
       - supervisor
