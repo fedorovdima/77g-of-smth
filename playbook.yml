@@ -20,14 +20,21 @@
       dest: /etc/nginx/sites-available/default
       owner: root
       group: root
-      mode: '0644'
+      mode: 0644
   - name: upload hello-world app code
     copy:
       src: ubuntu-fs/var/www/html/hello.py
       dest: /var/www/html/hello.py
       owner: root
       group: root
-      mode: '0755'
+      mode: 0755
+  - name: upload a sample static file
+    copy:
+      src: ubuntu-fs/var/www/html/static/
+      dest: /var/www/html/static/
+      owner: root
+      group: root
+      mode: 0644
   - name: install python3-pip to install required Python module(s)
     apt:
       name: python3-pip
@@ -49,7 +56,7 @@
       dest: /etc/supervisor/conf.d/hello-fcgi.conf
       owner: root
       group: root
-      mode: '0644'
+      mode: 0644
   - name: reload supervisor & nginx for them to handle the new configs
     systemd:
       name: "{{ item }}"
