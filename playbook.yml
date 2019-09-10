@@ -50,10 +50,13 @@
       owner: root
       group: root
       mode: '0644'
-  - name: reload supervisor for it to handle the new config
+  - name: reload supervisor & nginx for them to handle the new configs
     systemd:
-      name: supervisor
+      name: "{{ name }}"
       state: reloaded
+    loop:
+      - supervisor
+      - nginx
   - name: install Postgres SQL RDBMS
     apt:
       name: postgresql

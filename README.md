@@ -62,7 +62,7 @@ ok: [1.2.3.4] => {"changed": false, "enabled": true, "name": "supervisor", "stat
 TASK [upload supervisor config file for managing FastCGI socket] ***********************************
 changed: [1.2.3.4] => {"changed": true, "checksum": "6c692a9be45e99d8468e7061022deca54b1dfad2", "dest": "/etc/supervisor/conf.d/hello-fcgi.conf", "gid": 0, "group": "root", "md5sum": "a1cd419c052da3561c905bae6e543d68", "mode": "0644", "owner": "root", "size": 134, "src": "/home/ubuntu/.ansible/tmp/ansible-tmp-1568045668.61-142918330755432/source", "state": "file", "uid": 0}
 
-TASK [reload supervisor for it to handle the new config] *******************************************
+TASK [reload supervisor & nginx for them to handle the new configs] *******************************************
 changed: [1.2.3.4] => {"changed": true, "name": "supervisor", "state": "started", ...
 
 TASK [install postgres_* modules dependencies] *****************************************************
@@ -108,6 +108,7 @@ $ sudo systemctl enable supervisor.service
 $ sudo systemctl start supervisor.service
 $ sudo nano /etc/supervisor/conf.d/hello-fcgi.conf
 $ sudo systemctl reload supervisor.service
+$ sudo systemctl reload nginx.service
 ```
 * install PostgreSQL:
 ```
