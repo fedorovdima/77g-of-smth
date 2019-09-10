@@ -1,0 +1,6 @@
+[target_group]
+1.2.3.4 ansible_user=theboss ansible_ssh_private_key_file=/home/ubuntu/.ssh/id_rsa1
+5.6.7.8 ansible_ssh_private_key_file=/home/ubuntu/.ssh/id_rsa2
+
+[target_group:vars]
+ansible_python_interpreter=/usr/bin/python3
